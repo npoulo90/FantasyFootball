@@ -1,20 +1,19 @@
-#Create an api call using this url curl "https://api.sleeper.app/v1/user/<username>"
-#Replace <username> with your poulos
-#Load the data into a dataframe called user
-
 import pandas as pd
 import requests
-
+        
+#rewrite the class to be more general
 class User:
-    def __init__(self, user_name):
+   def __init__(self, user_name: str()):
+    #    user_name = self.user_name
         self.user_name = user_name
+        
+#Rewrite a method call the url and return a dataframe
+   def get_user(self):
+       url = "https://api.sleeper.app/v1/user/" + self.user_name
+       user = pd.DataFrame.from_dict(requests.get(url).json(), orient='index').T
+       return user
+       
+       
+       
 
-    def get_user(self):
-        url = "https://api.sleeper.app/v1/user/" + self.user_name
-        user = pd.DataFrame.from_dict(requests.get(url).json(), orient='index').T
-        return user
-    
-    def get_user_id(self):
-        df = rsu.User('poulos').get_user()
-        df['user_id'][0] 
         
