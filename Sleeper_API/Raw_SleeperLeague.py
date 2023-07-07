@@ -1,31 +1,49 @@
 import pandas as pd
 import requests
-import Raw_SleeperUser
+import base
 
 
 
-
-class League:
-    def __init__(self, user_id: str(), year: int()):
-        self.user_id = user_id
-        self.year = year
+class League(makecall):                 # Inherit from User class
+    def __init__ (self, user_name: str(), year: str()): # Initialize with user_name and year
+        self.user_name = user_name
+        self.year = year       # Inherit from User class
+        self.base_url = "https://api.sleeper.app/v1/user/" + self.user_name + "/leagues/nfl/" + self.year
         
-    def get_leagues(self):
-        url = "https://api.sleeper.app/v1/user/" + self.user_id + "/leagues/nfl/" + str(self.year)
-        leagues = pd.DataFrame.from_dict(requests.get(url).json()[0], orient='index').T
-        return leagues
-    
-    def get_league_id(self):
-        return self.get_leagues()['league_id'][0]
+    def get_user_leagues(self):
+        return self._call(self.base_url)
+            
 
-#create a descriptor for league_id in the dataframe returned by get_leagues
-    @property
-    def league_id(self):
-        return self.get_leagues()['league_id'][0] 
-    
-    #how do I pass the league_id value from the dataframe returned by get_leagues() method to another method called get_rosters()?
-    def get_rosters(self):
+### Sleeper League Class ###
+# class League(base):                 # Inherit from User class
+#     def __init__ (self, user_name: str(), year: str()): # Initialize with user_name and year
+#         self.user_name = user_name
+#         self.year = year       # Inherit from User class
         
-        url = "https://api.sleeper.app/v1/league/" + self.league_id + "/rosters"
-        rosters = pd.DataFrame.from_dict(requests.get(url).json())
-        return rosters
+#     def get_user_leagues(self):
+#         # league_url = "https://api.sleeper.app/v1/user/" + super().get_user_id() + "/leagues/nfl/" + self.year
+#         return super().get_user_id()
+        
+#     def get_league_id(self):
+#         return league_id
+
+        
+        
+# # class Rosters(League):              # Inherit from League class
+# #     def __init__(self, user_name: str(), year: str()): # Initialize with league_id and year
+# #         super().__init__(user_name, year)        # Inherit from League class
+# #         league_id = super().get_league_id()  # Get league_id from League class
+        
+        
+#     def get_rosters(self):
+#         league_id = super().get_league_id()  # Get league_id from League class
+#         url = "https://api.sleeper.app/v1/league/" + league_id + "/rosters"
+#         rosters = pd.DataFrame.from_dict(requests.get(url).json())
+#         return rosters
+        
+        
+ 
+
+    
+    
+
