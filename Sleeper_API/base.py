@@ -38,18 +38,27 @@ class sleeper(object):
 # used to create a templated process to make 
 # api calls based on the URL being passed in-------- ##
 
-# class makecall:
-#     def __init__(self, url: str()):
-#         self.url = url
+class makecall:
+    def __init__(self, url: str()):
+        self.url = url
         
-#     def _call(self):
-#         try:
-#             results = requests.get(self.url).json()
-#             return results
-#         except:
-#             print("Error: " + str(e))
-#             return 
+    def _call(self):
+        try:
+            results = requests.get(self.url).json()
+            return results
+        except:
+            print("Error: " + str(e))
+            return 
 
 ## ------------End Section ----------------- ##
+
+
+
+
+
+
+
+
+
         
         
