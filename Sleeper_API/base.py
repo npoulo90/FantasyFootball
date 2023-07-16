@@ -13,11 +13,7 @@ Base class for Sleeper API
 	make API calls.
  
  Future Enhancements:
-	Create a new class that is inherited
-	for the purpose of making API calls
-	based on the URL being passed in.
-	This will allow for a templated
-	process to make API calls.
+	- Add error handling
  
 ------------------End Description------------------ '''
 class sleeper(object):
@@ -34,12 +30,11 @@ class sleeper(object):
 		league_url = "https://api.sleeper.app/v1/user/" + self.user_id + "/leagues/nfl/" + self.year
 		return requests.get(league_url).json()[0]['league_id']
 
-## ---------- The section below can potentially be 
-# used to create a templated process to make 
+## ---------- The section below is used to make templated
 # api calls based on the URL being passed in-------- ##
 
 class makecall:
-    def __init__(self, url: str()):
+    def __init__(self, url: str(), **kwargs):
         self.url = url
         
     def _call(self):

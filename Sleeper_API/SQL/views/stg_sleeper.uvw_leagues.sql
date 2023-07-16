@@ -8,18 +8,16 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-
-CREATE view [stg_sleeper].[uvw_leagues] 
-as 
-select 
- cast(league_id as bigint)				as league_id				
-,cast([name] as varchar(100))		as league_name
-,cast(total_rosters as int)			as total_rosters
-,cast(season_type as varchar(50))	as season_type
-,cast(season as int)				as season
-,cast(draft_id as bigint)				as draft_id
-,cast(bracket_id as bigint)			as bracket_id
-from raw_sleeper.leagues
+CREATE VIEW [stg_sleeper].[uvw_leagues]
+AS
+SELECT cast(league_id AS BIGINT) AS league_id,
+	cast([name] AS VARCHAR(100)) AS league_name,
+	cast(total_rosters AS INT) AS total_rosters,
+	cast(season_type AS VARCHAR(50)) AS season_type,
+	cast(season AS INT) AS season,
+	cast(draft_id AS BIGINT) AS draft_id,
+	cast(bracket_id AS BIGINT) AS bracket_id
+FROM raw_sleeper.leagues
 GO
 
 
